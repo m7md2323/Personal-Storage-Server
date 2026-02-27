@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Private Cloud | Introduction</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        :root { --bg: #0f172a; --card: #1e293b; --accent: #38bdf8; --text: #f1f5f9; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--bg); color: var(--text); margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .hero-card { max-width: 800px; background: var(--card); padding: 40px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); text-align: center; }
+        h1 { color: var(--accent); font-size: 2.5rem; margin-bottom: 10px; }
+        .status-bar { display: flex; justify-content: space-around; background: #0f172a; padding: 15px; border-radius: 8px; margin: 25px 0; font-family: monospace; border: 1px solid #334155; }
+        .status-item b { color: var(--accent); }
+        p { line-height: 1.6; color: #94a3b8; font-size: 1.1rem; }
+        .btn-enter { display: inline-block; margin-top: 30px; background: var(--accent); color: #0f172a; padding: 12px 35px; border-radius: 8px; text-decoration: none; font-weight: bold; transition: transform 0.2s; }
+        .btn-enter:hover { transform: translateY(-2px); background: #7dd3fc; }
+    </style>
+</head>
+<body>
+
+<div class="hero-card">
+    <h1>Personal Storage Cloud</h1>
+    <p>Welcome to your self-hosted ecosystem running on <b>Debian Linux</b>.</p>
+
+    <div class="status-bar">
+        <div class="status-item">OS: <b>eMMC (15GB)</b></div>
+        <div class="status-item">Storage: <b>USB sda1 (14GB)</b></div>
+        <div class="status-item">RAM: <b>4GB</b></div>
+    </div>
+
+    <div style="text-align: left; margin-top: 20px;">
+        <h3>What is this?</h3>
+        <p>This is a private, high-performance file server built with <b>Go (Golang)</b> and <b>Gin</b>. By offloading data to external USB storage, we keep the system lightweight and modular.</p>
+        
+        <h3>Current Architecture:</h3>
+        <ul>
+            <li><b>Backend:</b> Go Binary (Compiled for speed)</li>
+            <li><b>Database:</b> SQLite (Stored on USB via Symlink)</li>
+            <li><b>Frontend:</b> HTML5/JS (Embedded directly in the app)</li>
+        </ul>
+    </div>
+
+    <a href="/login" class="btn-enter">Access Files</a>
+</div>
+
+</body>
+</html>
