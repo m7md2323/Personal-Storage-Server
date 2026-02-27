@@ -1,32 +1,35 @@
-# If you prefer the allow list template instead of the deny list, see community template:
-# https://github.com/github/gitignore/blob/main/community/Golang/Go.AllowList.gitignore
-#
-# Binaries for programs and plugins
+# --- Binary & Executables ---
+# The compiled Go application (on Linux, it's usually named after the folder or 'main')
+main
+server
 *.exe
 *.exe~
 *.dll
 *.so
 *.dylib
 
-# Test binary, built with `go test -c`
-*.test
+# --- Data & Storage (CRITICAL) ---
+# Ignore the actual database file
+*.db
+*.db-journal
 
-# Code coverage profiles and other test artifacts
-*.out
-coverage.*
-*.coverprofile
-profile.cov
+# Ignore the symlink/shortcut to your USB drive
+data_link/
 
-# Dependency directories (remove the comment below to include it)
-# vendor/
+# If you create local upload folders for testing, ignore them
+uploads/
+temp/
 
-# Go workspace file
-go.work
-go.work.sum
-
-# env file
+# --- Environment & Secrets ---
+# Do not upload your server's secret keys or IP configs
 .env
+config.yaml
+auth_tokens.txt
 
-# Editor/IDE
-# .idea/
-# .vscode/
+# --- Go Specific ---
+# Ignore the dependency folder (Go handles this via go.mod)
+vendor/
+
+# --- OS Specific ---
+.DS_Store
+Thumbs.db
