@@ -3,27 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Private Cloud Storage</title>
+    <title>Cloud Storage - Profiles</title>
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to Your Cloud</h1>
+        <h1>Select Profile</h1>
         
-        <div id="user-selection" class="card">
-            <h3>Who are you?</h3>
-            <div id="user-list">
-                <p class="loading">Scanning database...</p>
+        <div id="user-grid" class="user-grid">
             </div>
-        </div>
 
-        <div class="divider">OR</div>
+        <hr>
 
-        <div id="create-account" class="card">
-            <h3>Create New Profile</h3>
-            <input type="text" id="new-username" placeholder="Choose a Username">
-            <button onclick="requestAccess()" class="btn-primary">Get Verification Code</button>
-            <p class="hint">A 10-digit code will appear on the laptop terminal.</p>
+        <div class="card">
+            <h3>Add New Profile</h3>
+            <input type="text" id="username-input" placeholder="New Username">
+            <button onclick="addUser()" class="btn-primary">Create User</button>
         </div>
     </div>
 

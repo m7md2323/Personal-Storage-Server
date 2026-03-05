@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"math/big"
 )
+var CurrentAccessCode string
 //This function will print a 10 digits code on the laptop server terminal and the user should have access to the laptop,
 // this will make only trusted people access the website.
 func GenerateStorageCode() string {
@@ -23,6 +24,7 @@ func GenerateStorageCode() string {
 	fmt.Println("*********************************")
 	fmt.Printf(" YOUR ACCESS CODE IS: %s \n", code)
 	fmt.Println("*********************************")
-
+	
+	CurrentAccessCode = code
 	return code
 }
