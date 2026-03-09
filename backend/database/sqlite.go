@@ -5,12 +5,22 @@ import (
     "github.com/glebarez/sqlite"
     "gorm.io/gorm"
     "log"
+    "os"
+    "github.com/joho/godotenv"
 )
 
 var DB *gorm.DB
 
 func ConnectDatabase() {
-    path := "./data_link/storage.db"
+    err := godotenv.Load()
+    if err != nil {
+        log.Println("No .env file found or error reading it, using defaults if applicable")
+    }
+
+    path := os.Getenv("DATABASE_FILE_PATH")
+    if path == "" {
+        path = "./data_link/storage.db" // fallback
+    }
 
     database, err := gorm.Open(sqlite.Open(path), &gorm.Config{})
     if err != nil {

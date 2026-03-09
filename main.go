@@ -15,6 +15,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"golang.org/x/crypto/bcrypt"
+	"github.com/joho/godotenv"
 )
 
 // embed frontend files to make them executable
@@ -23,6 +24,9 @@ import (
 var embedFrontend embed.FS
 
 func main() {
+	//Load Env variables
+	godotenv.Load()
+
 	//Init database
 	database.ConnectDatabase()
 
@@ -107,8 +111,11 @@ func main() {
 				return
 			}
 
-			// 1. Create the folder on the USB
-			userRoot := "/mnt/usb/server_storage/uploads"
+			// 1. Create the folder on the Storage
+			userRoot := os.Getenv("UPLOADS")
+			if userRoot == "" {
+				userRoot = "D:/Personal-Storage-Server/server_storage/uploads"
+			}
 			userPath := filepath.Join(userRoot, newUser.Username)
 
 			err := os.MkdirAll(userPath, 0755)
@@ -180,7 +187,11 @@ func main() {
 			c.SetCookie("user_session", loginReq.Username, 3600*24, "/", "", false, true)
 
 			// 3. Ensure their private folder exists
-			userPath := filepath.Join("/mnt/usb/server_storage/uploads", loginReq.Username)
+			uploadDir := os.Getenv("UPLOADS")
+			if uploadDir == "" {
+				uploadDir = "D:/Personal-Storage-Server/server_storage/uploads"
+			}
+			userPath := filepath.Join(uploadDir, loginReq.Username)
 			os.MkdirAll(userPath, 0777)
 
 			c.Status(200)
@@ -208,8 +219,12 @@ func main() {
 
 				// 2. Define the destination (Your USB Path)
 				//dst := "/mnt/usb/server_storage/uploads/" + file.Filename
+				uploadDir := os.Getenv("UPLOADS")
+				if uploadDir == "" {
+					uploadDir = "D:/Personal-Storage-Server/server_storage/uploads"
+				}
 				userSession, _ := c.Cookie("user_session")
-				savePath := filepath.Join("/mnt/usb/server_storage/uploads", userSession, file.Filename)
+				savePath := filepath.Join(uploadDir, userSession, file.Filename)
 
 				if err := c.SaveUploadedFile(file, savePath); err != nil {
 					fmt.Println("Upload Error:", err) // CHECK YOUR TERMINAL FOR THIS
@@ -223,7 +238,11 @@ func main() {
 			private.GET("/api/raw", func(c *gin.Context) {
 				// This takes the path from the URL and serves the actual file
 				username, _ := c.Cookie("user_session")
-				userPath := filepath.Join("/mnt/usb/server_storage/uploads", username)
+				uploadDir := os.Getenv("UPLOADS")
+				if uploadDir == "" {
+					uploadDir = "D:/Personal-Storage-Server/server_storage/uploads"
+				}
+				userPath := filepath.Join(uploadDir, username)
 				userPath+="/"
 				fileName := c.Query("name")
 				//fmt.Println(userPath+fileName)
@@ -236,7 +255,13 @@ func main() {
 				username, _ := c.Cookie("user_session")
 
 				// Force the path to be /uploads/USERNAME
-				userPath := filepath.Join("/mnt/usb/server_storage/uploads", username)
+
+				///mnt/usb/server_storage/uploads
+				uploadDir := os.Getenv("UPLOADS")
+				if uploadDir == "" {
+					uploadDir = "D:/Personal-Storage-Server/server_storage/uploads"
+				}
+				userPath := filepath.Join(uploadDir, username)
 
 				// We ignore the 'path' query for now to force it to show the absolute usbPath
 				entries, err := os.ReadDir(userPath)

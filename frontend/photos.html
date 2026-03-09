@@ -3,22 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Photos - MyCloud</title>
-        
-    <!-- Link to your external style.css -->
+    <title>Gallery - MyCloud</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Photos</h1>
-        <div id="gallery"></div>
+    <nav class="navbar glass-panel" style="border-radius: 0; border-top: none; border-left: none; border-right: none;">
+        <div class="nav-brand"><i class="fas fa-cube"></i> Storage</div>
+        
+        <div class="nav-links">
+            <a href="/my_files">Files</a>
+            <a href="/my_files/photos" class="active">Gallery</a>
+        </div>
+        
+        <div class="menu-actions">
+            <button onclick="logout()" class="btn btn-outline" style="padding: 6px 12px; font-size: 0.85rem;" title="Secure Logout">
+                Logout
+            </button>
+        </div>
+    </nav>
 
+    <div class="app-container">
+        <header class="gallery-header">
+            <div>
+                <h2>Gallery</h2>
+                <p class="subtitle" style="margin-bottom: 0;">Stored images</p>
+            </div>
+            
+            <div class="photo-count-badge" id="photo-count">Loading...</div>
+        </header>
+
+        <div id="gallery" class="photo-grid">
+            <div class="loading-state" style="grid-column: 1 / -1;"><i class="fas fa-circle-notch fa-spin"></i></div>
+        </div>
     </div>
-    <div id="popup">
-        <img scr="" alt="" id="selectedItem">
+
+    <!-- Lightbox Modal -->
+    <div id="gallery-viewer" class="gallery-viewer">
+        <div class="viewer-toolbar">
+            <div class="viewer-filename" id="viewer-filename">Loading</div>
+            <div class="viewer-toolbar-right">
+                <span class="viewer-counter" id="viewer-counter">0 / 0</span>
+                <a href="#" id="viewer-download" class="viewer-ctrl-btn" download title="Download"><i class="fas fa-download"></i></a>
+                <button class="viewer-ctrl-btn" onclick="closeGalleryViewer()" title="Close"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        
+        <div class="viewer-body">
+            <button class="viewer-nav" id="btn-prev" onclick="navigatePhoto(-1)"><i class="fas fa-chevron-left"></i></button>
+            <img id="viewer-img" src="" alt="Gallery View">
+            <button class="viewer-nav" id="btn-next" onclick="navigatePhoto(1)"><i class="fas fa-chevron-right"></i></button>
+        </div>
     </div>
 
-
+    <div id="viewer" style="display: none;"></div>
+    
     <script src="/static/js/app.js"></script>
 </body>
 </html>

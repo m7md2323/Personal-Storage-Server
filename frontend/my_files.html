@@ -1,52 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"><title>Files - MyCloud Pro</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vault - MyCloud</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-brand"><i class="fas fa-cloud"></i> MyCloud</div>
+    <nav class="navbar glass-panel" style="border-radius: 0; border-top: none; border-left: none; border-right: none;">
+        <div class="nav-brand"><i class="fas fa-cube"></i> Storage</div>
+        
         <div class="nav-links">
             <a href="/my_files" class="active">Files</a>
             <a href="/my_files/photos">Gallery</a>
         </div>
+        
         <div class="menu-actions">
-            <a href="#" onclick="logout()" class="action-btn logout-link" title="Logout"><i class="fas fa-sign-out-alt"></i></a>
+            <button onclick="logout()" class="btn btn-outline" style="padding: 6px 12px; font-size: 0.85rem;" title="Secure Logout">
+                Logout
+            </button>
         </div>
     </nav>
 
-    <div class="app-container" style="margin-top: 30px;">
+    <div class="app-container">
+        <header class="page-header">
+            <div>
+                <h2>Files</h2>
+                <p class="subtitle" style="margin-bottom: 0;">Manage your documents</p>
+            </div>
+        </header>
         
         <div class="upload-zone" id="upload-zone">
-            <i class="fas fa-cloud-upload-alt upload-icon"></i>
-            <div class="upload-content">
-                <h3>Drag & Drop files here</h3>
-                <p>or <span>browse</span> to upload</p>
-            </div>
+            <i class="fas fa-upload upload-icon"></i>
+            <h3 style="color: var(--text-main); font-size: 1.1rem;">Click or drag files here</h3>
+            <p style="color: var(--text-muted); font-size: 0.85rem;">Secure upload to your vault</p>
             <input type="file" id="file-input" hidden multiple>
         </div>
 
         <div class="progress-wrapper" id="upload-progress-container" style="display: none;">
-            <div class="progress-info">
+            <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-main);">
                 <span id="filename-display">Uploading...</span>
-                <span id="progress-percent">0%</span>
+                <span id="progress-percent" style="color: var(--text-light);">0%</span>
             </div>
             <div class="progress-bar">
                 <div class="progress-fill" id="progress-fill"></div>
             </div>
         </div>
 
-        <div class="data-card" id="file-list">
-            <div class="loading-state"><i class="fas fa-spinner fa-spin"></i></div>
+        <div class="file-list-container">
+            <div id="file-list">
+                <div class="loading-state"><i class="fas fa-circle-notch fa-spin"></i> Loading context...</div>
+            </div>
         </div>
     </div>
 
-    <div id="viewer">
-        <i class="fas fa-times close-viewer" onclick="closeViewer()"></i>
-        <img id="viewer-img" src="">
+    <!-- Viewer Modal -->
+    <div id="viewer" class="gallery-viewer">
+        <div class="viewer-toolbar">
+            <div class="viewer-filename" id="viewer-filename-single">Viewing File</div>
+            <div class="viewer-toolbar-right">
+                <a href="#" id="viewer-download-single" class="viewer-ctrl-btn" download title="Download"><i class="fas fa-download"></i></a>
+                <div class="viewer-ctrl-btn close-viewer" onclick="closeViewer()" title="Close"><i class="fas fa-times"></i></div>
+            </div>
+        </div>
+        <div class="viewer-body">
+            <img id="viewer-img" src="" alt="Viewed Image">
+        </div>
     </div>
 
     <script src="/static/js/app.js"></script>

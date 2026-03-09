@@ -1,31 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"><title>MyCloud Pro - Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - MyCloud</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
     <div class="auth-container">
         <div class="auth-card">
-            <h2 class="section-title"><h3>Welcome to MyCloud</h3></h2>
+            <h2>Welcome</h2>
+            <p class="subtitle" style="margin-bottom: 32px;">Select a vault to unlock</p>
             
             <div id="user-list" class="user-grid">
-                <div class="loading-spinner"><i class="fas fa-spinner fa-spin"></i></div>
+                <div class="loading-spinner"><i class="fas fa-circle-notch fa-spin"></i></div>
             </div>
 
             <form id="login-form" style="display: none;">
-                <p id="selected-user-text" class="subtitle"></p>
+                <p id="selected-user-text" class="subtitle" style="color: var(--text-main); font-weight: 500; border-bottom: 1px solid var(--border); padding-bottom: 16px; margin-bottom: 24px;"></p>
                 <div class="input-group">
-                    <input type="password" id="password" placeholder="Enter password" required autofocus>
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required autofocus>
                 </div>
                 
-                <button type="submit" class="btn">Login</button>
-
-                <button type="button" class="btn-outline btn" onclick="location.reload()">Back</button>
+                <button type="submit" class="btn">Unlock</button>
+                <button type="button" class="btn-outline btn" onclick="location.reload()" style="margin-top: 12px;">Go Back</button>
             </form>
             
-            <p style="margin-top: 20px;"><a href="/create_user" style="color: var(--primary);">Create new user</a></p>
+            <div style="margin-top: 32px; padding-top: 24px;">
+                <p style="font-size: 0.85rem; color: var(--text-muted);">
+                    <a href="/create_user" style="color: var(--text-light); text-decoration: underline;">Create a new vault</a>
+                </p>
+            </div>
         </div>
     </div>
     <script src="/static/js/app.js"></script>

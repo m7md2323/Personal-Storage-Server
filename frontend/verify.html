@@ -2,22 +2,62 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Verify Device - MyCloud</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Identity - MyCloud</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        .verify-inputs {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        .verify-inputs input {
+            width: 80px;
+            text-align: center;
+            letter-spacing: 2px;
+            font-family: monospace;
+            font-size: 1.1rem;
+        }
+        .dash {
+            color: var(--text-light);
+            font-weight: 500;
+        }
+    </style>
 </head>
 <body>
     <div class="auth-container">
         <div class="auth-card">
-            <h2>Unrecognized Device</h2>
-            <p class="subtitle">Please verify this device to continue.</p>
-            <form id="verify-form">
-                <div class="input-group">
-                    <label>Verification Code</label>
-                    <input type="text" id="verify-code" placeholder="Enter 6-digit code" required>
+            <h2>Device Verification</h2>
+            <p class="subtitle" id="verify-subtitle">This device is not recognized.</p>
+            
+            <div id="step-send">
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 24px;">
+                    We need to verify your identity before allowing access from this browser.
+                </p>
+                <button class="btn" onclick="sendCode()" id="btn-send">Send Code</button>
+            </div>
+
+            <form id="step-verify" style="display: none;">
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 16px;">
+                    Enter the 10-digit code sent to your device.
+                </p>
+                
+                <div class="verify-inputs">
+                    <input type="text" id="code-1" maxlength="3" placeholder="012" required autofocus autocomplete="off">
+                    <span class="dash">-</span>
+                    <input type="text" id="code-2" maxlength="3" placeholder="345" required autocomplete="off">
+                    <span class="dash">-</span>
+                    <input type="text" id="code-3" maxlength="4" placeholder="6789" required autocomplete="off">
                 </div>
-                <button type="submit" class="btn">Verify</button>
+                
+                <button type="submit" class="btn">Verify Device</button>
+                <button type="button" class="btn btn-outline" onclick="location.reload()" style="margin-top: 12px;">Back</button>
             </form>
         </div>
     </div>
+    <script src="/static/js/verify.js"></script>
 </body>
 </html>
