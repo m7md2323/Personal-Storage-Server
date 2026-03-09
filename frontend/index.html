@@ -1,27 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cloud Storage - Profiles</title>
+    <meta charset="UTF-8"><title>MyCloud Pro - Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Select Profile</h1>
-        
-        <div id="user-grid" class="user-grid">
+    <div class="auth-container">
+        <div class="auth-card">
+            <h2 class="section-title"><h3>Welcome to MyCloud</h3></h2>
+            
+            <div id="user-list" class="user-grid">
+                <div class="loading-spinner"><i class="fas fa-spinner fa-spin"></i></div>
             </div>
 
-        <hr>
+            <form id="login-form" style="display: none;">
+                <p id="selected-user-text" class="subtitle"></p>
+                <div class="input-group">
+                    <input type="password" id="password" placeholder="Enter password" required autofocus>
+                </div>
+                
+                <button type="submit" class="btn">Login</button>
 
-        <div class="card">
-            <h3>Add New Profile</h3>
-            <input type="text" id="username-input" placeholder="New Username">
-            <button onclick="addUser()" class="btn-primary">Create User</button>
+                <button type="button" class="btn-outline btn" onclick="location.reload()">Back</button>
+            </form>
+            
+            <p style="margin-top: 20px;"><a href="/create_user" style="color: var(--primary);">Create new user</a></p>
         </div>
     </div>
-
     <script src="/static/js/app.js"></script>
 </body>
 </html>

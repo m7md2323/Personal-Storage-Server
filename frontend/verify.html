@@ -2,27 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Device Verification - Private Cloud</title>
+    <title>Verify Device - MyCloud</title>
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-    <div class="container">
-        <div id="request-section" class="card">
-            <h2 style="color: #ff4757;">Untrusted Device</h2>
-            <p>This device is not recognized by the server.</p>
-            <button onclick="requestCode()" class="btn-primary">Request Access Code</button>
-            <p class="hint">The code will be printed to the Debian terminal.</p>
-        </div>
-
-        <div id="submit-section" class="card" style="display: none;">
-            <h3>Enter 10-Digit Code</h3>
-            <input type="text" id="access-code" placeholder="e.g. 123-456-7890">
-            <button onclick="submitCode()" class="btn-primary" style="background: #00cf8d;">Verify Device</button>
-            <p id="error-msg" style="color: #ff4757; display: none; margin-top: 10px;">Incorrect Code. Try again.</p>
+    <div class="auth-container">
+        <div class="auth-card">
+            <h2>Unrecognized Device</h2>
+            <p class="subtitle">Please verify this device to continue.</p>
+            <form id="verify-form">
+                <div class="input-group">
+                    <label>Verification Code</label>
+                    <input type="text" id="verify-code" placeholder="Enter 6-digit code" required>
+                </div>
+                <button type="submit" class="btn">Verify</button>
+            </form>
         </div>
     </div>
-
-    <script src="/static/js/verify.js"></script>
 </body>
 </html>
