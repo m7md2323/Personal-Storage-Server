@@ -187,6 +187,7 @@ async function loadFiles() {
                     actions += `<a href="${rawUrl}" target="_blank" class="action-btn" title="Open"><i class="fas fa-external-link-alt"></i></a>`;
                 }
                 actions += `<a href="${rawUrl}" download class="action-btn" title="Download"><i class="fas fa-download"></i></a>`;
+                actions += `<button class="action-btn" style="color: var(--danger);" onclick="deleteFile('${item.name}')" title="Delete"><i class="fas fa-trash-alt"></i></button>`;
             }
 
             const iconClass = item.isDir ? 'fa-folder' : (isPhoto ? 'fa-image' : 'fa-file-alt');
@@ -251,6 +252,7 @@ async function loadPhotos() {
                     <div class="photo-item-actions">
                         <span class="photo-item-btn" title="Expand"><i class="fas fa-expand"></i></span>
                         <a class="photo-item-btn" href="${img.url}" download="${img.name}" title="Download" onclick="event.stopPropagation()"><i class="fas fa-download"></i></a>
+                        <button class="photo-item-btn" style="color: var(--danger);" title="Delete" onclick="event.stopPropagation(); deleteFile('${img.name}')"><i class="fas fa-trash-alt"></i></button>
                     </div>
                 </div>
             </div>`).join('');
@@ -442,4 +444,36 @@ function submitFile(file, onProgress) {
     }
 
     xhr.send(formData);
+}
+
+// ==========================================
+// FILE DELETION
+// ==========================================
+
+async function deleteFile(filename) {
+    if (!confirm(`Are you sure you want to completely delete "${filename}"? This cannot be undone.`)) {
+        return;
+    }
+
+    try {
+        const res = await fetch('/api/delete', {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name: filename })
+        });
+
+        if (res.ok) {
+            // Refresh the current view
+            if (window.location.pathname.includes('/photos')) {
+                loadPhotos();
+            } else {
+                loadFiles();
+            }
+        } else {
+            const err = await res.json();
+            alert(err.error || "Failed to delete file.");
+        }
+    } catch (e) {
+        alert("Connection error occurred while deleting.");
+    }
 }
