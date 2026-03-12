@@ -97,7 +97,7 @@ func Login(c *gin.Context) {
 	}
 
 	// Compare the plain text password with the hashed password
-	if user.Password != loginReq.Password {
+	if bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(loginReq.Password))!=nil {
 		c.JSON(http.StatusUnauthorized, gin.H{"error": "Wrong password"})
 		return
 	}

@@ -100,22 +100,6 @@ h1, h2, h3, h4 {
     margin: 0 auto;
     padding: 0 40px;
     padding-bottom: 60px;
-    display: grid;
-    grid-template-columns: 280px 1fr;
-    gap: 40px;
-    align-items: start;
-}
-
-.sidebar-layout {
-    position: sticky;
-    top: 100px;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-}
-
-.main-content {
-    min-width: 0;
 }
 
 /* ============================================================
@@ -345,63 +329,6 @@ input[type="password"]:focus {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-/* Storage Info Card */
-.storage-card {
-    padding: 24px;
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-}
-
-.storage-title {
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--text-light);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.storage-stats {
-    margin-bottom: 16px;
-}
-
-.storage-used {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--text-main);
-}
-
-.storage-total {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-}
-
-.usage-bar-wrapper {
-    height: 6px;
-    background: var(--bg-color);
-    border-radius: var(--radius-full);
-    overflow: hidden;
-    margin-bottom: 12px;
-}
-
-.usage-bar-fill {
-    height: 100%;
-    width: 0%;
-    background: var(--primary);
-    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.storage-details {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.8rem;
-    color: var(--text-muted);
 }
 
 .file-list-container {
@@ -749,4 +676,87 @@ input[type="password"]:focus {
 .dash {
     color: var(--text-light);
     font-weight: 500;
+}
+
+/* ============================================================
+   STORAGE WIDGET - FIXED BOTTOM-LEFT
+   ============================================================ */
+.storage-widget {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    width: 240px;
+    padding: 20px;
+    background: rgba(20, 20, 20, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    z-index: 1000;
+    transition: transform var(--trans-smooth), border-color var(--trans-fast);
+}
+
+.storage-widget:hover {
+    border-color: var(--text-muted);
+    transform: translateY(-4px);
+}
+
+.storage-heading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+}
+
+.storage-heading i {
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+.storage-data {
+    margin-bottom: 12px;
+}
+
+.storage-val {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.storage-max {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-left: 4px;
+}
+
+.usage-progress-bg {
+    height: 4px;
+    background: var(--bg-color);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+
+.usage-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--primary);
+    transition: width 1.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.storage-footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.storage-footer span:last-child {
+    color: var(--text-light);
 }

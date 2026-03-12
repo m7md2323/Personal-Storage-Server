@@ -165,10 +165,13 @@ func GetStorageInfo(c *gin.Context){
 		totalBytes := stat.Blocks * uint64(stat.Bsize)
 		freeBytes := stat.Bfree * uint64(stat.Bsize)
 
+		totalGigaBytes:=float32(totalBytes)/ (1024 * 1024 * 1024);
+		avaGigaBytes:=float32(availableBytes)/ (1024 * 1024 * 1024);
+		freeGigaBytes:=float32(freeBytes)/ (1024 * 1024 * 1024);
 		c.JSON(http.StatusOK, gin.H{
 			"path":           path,
-			"total_gb":       totalBytes / (1024 * 1024 * 1024),
-			"available_gb":   availableBytes / (1024 * 1024 * 1024),
-			"free_gb":        freeBytes / (1024 * 1024 * 1024),
+			"total_gb":       totalGigaBytes,
+			"available_gb":   avaGigaBytes,
+			"free_gb":        freeGigaBytes,
 		})
 }
