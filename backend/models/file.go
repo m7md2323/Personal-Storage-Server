@@ -13,5 +13,5 @@ type File struct {
 	FileSize  int64  `json:"file_size"`   
 	FileType  string `json:"file_type"`   
 	
-	OwnerID   uint   `json:"owner_id"`
+	OwnerUsername   string   `json:"owner_username"`
 }

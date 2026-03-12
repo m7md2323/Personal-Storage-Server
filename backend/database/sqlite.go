@@ -19,7 +19,7 @@ func ConnectDatabase() {
 
     path := os.Getenv("DATABASE_FILE_PATH")
     if path == "" {
-        path = "./data_link/storage.db" // fallback
+        path = "./data_link/storage.db"
     }
 
     database, err := gorm.Open(sqlite.Open(path), &gorm.Config{})

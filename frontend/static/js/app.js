@@ -1,7 +1,3 @@
-/**
- * MyCloud Pro - Unified Frontend Logic
- * Version 4.0: Modernized & Simplified Build
- */
 
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Identify current page context
@@ -19,9 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupUploadZone();
 });
 
-// ==========================================
-// AUTHENTICATION & USER SELECTION
-// ==========================================
+
 let selectedUser = "";
 
 function setupAuthListeners() {
@@ -150,16 +144,14 @@ async function logout() {
     window.location.href = '/';
 }
 
-// ==========================================
-// FILE EXPLORER
-// ==========================================
+//Files
 
 async function loadFiles() {
     const list = document.getElementById('file-list');
     try {
         const response = await fetch('/api/explorer'); 
         if (!response.ok) throw new Error("Fetch failed");
-        
+
         const items = await response.json();
         list.innerHTML = '';
 
@@ -171,10 +163,9 @@ async function loadFiles() {
                 </div>`;
             return;
         }
-
         items.forEach(item => {
             const rawUrl = `/api/raw?name=${encodeURIComponent(item.name)}`;
-            const ext = item.name.split('.').pop().toLowerCase();
+            const ext = item.ext;
             const isPhoto = ['jpg', 'jpeg', 'png', 'gif', 'webp'].includes(ext);
             const isDoc = ['pdf', 'txt', 'log'].includes(ext);
 
@@ -206,9 +197,7 @@ async function loadFiles() {
     }
 }
 
-// ==========================================
-// PHOTO GALLERY
-// ==========================================
+//Gallery 
 
 let galleryImages = [];
 let currentPhotoIndex = 0;
@@ -350,9 +339,7 @@ function closeViewer() {
     }
 }
 
-// ==========================================
-// UPLOADER
-// ==========================================
+//Upload files
 
 function setupUploadZone() {
     const zone = document.getElementById('upload-zone');

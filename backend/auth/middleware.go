@@ -9,8 +9,7 @@ func DeviceAuthRequired() gin.HandlerFunc {
     return func(c *gin.Context) {
         token, err := c.Cookie("trusted_device")
 
-        // Just check if the cookie exists. 
-        // In the future, we will check if this token exists in a 'TrustedDevices' database table.
+       
         if err != nil || token == "" {
             c.Redirect(http.StatusFound, "/verify")
             c.Abort()

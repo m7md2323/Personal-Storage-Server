@@ -37,7 +37,7 @@ func main() {
 	staticFS, _ := fs.Sub(frontendFS, "static")
 	r.StaticFS("/static", http.FS(staticFS))
 
-	r.MaxMultipartMemory=10<<20;
+	r.MaxMultipartMemory = 10 << 20
 	//Routes:
 	//For untrusted devices
 	r.GET("/verify", handler.VerifyPage)
@@ -75,8 +75,9 @@ func main() {
 			//to handle uploading files
 			private.POST("/api/upload", handler.UploadFiles)
 			//to handle deleteing files
-			private.DELETE("/api/delete", handler.UploadFiles)
+			private.DELETE("/api/delete", handler.DeleteFiles)
 
+			private.GET("/api/get_storage_info", handler.GetStorageInfo)
 
 			private.GET("/api/raw", handler.Raw)
 
