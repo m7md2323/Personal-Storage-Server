@@ -24,35 +24,56 @@
     </nav>
 
     <div class="app-container">
-        <header class="page-header">
-            <div>
-                <h2>Files</h2>
-                <p class="subtitle" style="margin-bottom: 0;">Manage your documents</p>
+        <aside class="sidebar-layout">
+            <div class="storage-card" id="storage-info">
+                <div class="storage-title">
+                    <i class="fas fa-hdd"></i> Storage
+                </div>
+                <div class="storage-stats">
+                    <span class="storage-used" id="storage-used">--</span>
+                    <span class="storage-total">of <span id="storage-total">--</span> GB</span>
+                </div>
+                <div class="usage-bar-wrapper">
+                    <div class="usage-bar-fill" id="storage-percent-bar"></div>
+                </div>
+                <div class="storage-details">
+                    <span>Available</span>
+                    <span id="storage-free">--</span>
+                </div>
             </div>
-        </header>
-        
-        <div class="upload-zone" id="upload-zone">
-            <i class="fas fa-upload upload-icon"></i>
-            <h3 style="color: var(--text-main); font-size: 1.1rem;">Click or drag files here</h3>
-            <p style="color: var(--text-muted); font-size: 0.85rem;">Secure upload to your vault</p>
-            <input type="file" id="file-input" hidden multiple>
-        </div>
+        </aside>
 
-        <div class="progress-wrapper" id="upload-progress-container" style="display: none;">
-            <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-main);">
-                <span id="filename-display">Uploading...</span>
-                <span id="progress-percent" style="color: var(--text-light);">0%</span>
+        <main class="main-content">
+            <header class="page-header" style="margin-top: 40px;">
+                <div>
+                    <h2>Files</h2>
+                    <p class="subtitle" style="margin-bottom: 0;">Manage your documents</p>
+                </div>
+            </header>
+            
+            <div class="upload-zone" id="upload-zone">
+                <i class="fas fa-upload upload-icon"></i>
+                <h3 style="color: var(--text-main); font-size: 1.1rem;">Click or drag files here</h3>
+                <p style="color: var(--text-muted); font-size: 0.85rem;">Secure upload to your vault</p>
+                <input type="file" id="file-input" hidden multiple>
             </div>
-            <div class="progress-bar">
-                <div class="progress-fill" id="progress-fill"></div>
-            </div>
-        </div>
 
-        <div class="file-list-container">
-            <div id="file-list">
-                <div class="loading-state"><i class="fas fa-circle-notch fa-spin"></i> Loading context...</div>
+            <div class="progress-wrapper" id="upload-progress-container" style="display: none;">
+                <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-main);">
+                    <span id="filename-display">Uploading...</span>
+                    <span id="progress-percent" style="color: var(--text-light);">0%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
             </div>
-        </div>
+
+            <div class="file-list-container">
+                <div id="file-list">
+                    <div class="loading-state"><i class="fas fa-circle-notch fa-spin"></i> Loading context...</div>
+                </div>
+            </div>
+        </main>
     </div>
 
     <!-- Viewer Modal -->

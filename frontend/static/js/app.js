@@ -7,7 +7,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 2. Execute necessary data fetchers
     if (hasUserList) fetchUsers();
-    if (hasFileList) loadFiles();
+    if (hasFileList) {
+        loadFiles();
+        fetchStorageInfo();
+    }
     if (hasGallery) loadPhotos();
 
     // 3. Setup core event listeners
@@ -194,6 +197,39 @@ async function loadFiles() {
         });
     } catch (e) {
         list.innerHTML = '<div class="loading-state"><p style="color:var(--danger)">Error accessing secure vault.</p></div>';
+    }
+}
+
+// ==========================================
+// STORAGE INFO
+// ==========================================
+
+async function fetchStorageInfo() {
+    const usedEl = document.getElementById('storage-used');
+    const totalEl = document.getElementById('storage-total');
+    const freeEl = document.getElementById('storage-free');
+    const barEl = document.getElementById('storage-percent-bar');
+
+    if (!usedEl) return;
+
+    try {
+        const response = await fetch('/api/get_storage_info');
+        if (!response.ok) throw new Error("Storage fetch failed");
+        
+        const data = await response.json();
+        
+        const usedGb = data.total_gb - data.available_gb;
+        const percent = (usedGb / data.total_gb) * 100;
+
+        usedEl.textContent = usedGb + " GB";
+        totalEl.textContent = data.total_gb;
+        freeEl.textContent = data.available_gb + " GB";
+        
+        if (barEl) {
+            barEl.style.width = percent + '%';
+        }
+    } catch (e) {
+        console.error("Storage Info Error:", e);
     }
 }
 
@@ -414,7 +450,10 @@ function submitFile(file, onProgress) {
                 if(container) container.style.display = 'none';
                 
                 // Refresh views
-                if (document.getElementById('file-list')) loadFiles();
+                if (document.getElementById('file-list')) {
+                    loadFiles();
+                    fetchStorageInfo();
+                }
                 if (document.getElementById('gallery')) loadPhotos();
             }, 800);
         } else {
@@ -455,6 +494,7 @@ async function deleteFile(filename) {
                 loadPhotos();
             } else {
                 loadFiles();
+                fetchStorageInfo();
             }
         } else {
             const err = await res.json();
