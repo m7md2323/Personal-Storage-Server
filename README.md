@@ -48,7 +48,7 @@
 ---
 
 ## 📂 Project Structure
-
+``` bash
 .
 ├── backend/
 │   ├── database/         # SQLite connection & GORM initialization
@@ -64,7 +64,7 @@
 ├── go.sum                # Cryptographic checksums
 ├── .gitignore            # Excludes sensitive data & binaries
 └── README.md             # Project documentation
-
+```
 ---
 
 ## 🚀 Getting Started
