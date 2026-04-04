@@ -5,7 +5,6 @@
 [**Project Portfolio**](https://m7md2323.github.io/Portfolio/pages/personal_cloud_sotrage.html) | [**Report Bug**](https://github.com/m7md2323/Personal-Storage-Server/issues)
 
 ---
-## Note: This website is desgined to run on a linux machine
 ## 📖 Table of Contents
 
 * [Features](#-features)
@@ -27,7 +26,7 @@
 ![GORM](https://img.shields.io/badge/GORM-blueviolet?style=for-the-badge)
 ![Debian](https://img.shields.io/badge/Debian-A81D33?style=for-the-badge&logo=debian&logoColor=white)
 
-> **Note:** This system is designed for hosted locally on a **Linux (Debian 13)** laptop to serve as a private cloud.
+> **Note:** This system is designed to be hosted locally on a **Linux (Debian 13)** machine to serve as a private cloud.
 
 ### Frontend
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
@@ -40,12 +39,10 @@
 ---
 
 ## ✨ Features
-
-* **Full File Lifecycle:** Seamlessly upload, download, and delete files through a clean web interface.
-* **Secure Remote Access:** Access your files from anywhere via a private mesh VPN using Tailscale.
-* **High Performance:** Built with a Go-based backend for fast file processing and low memory footprint.
-* **Persistent Storage:** Uses SQLite and GORM to manage file metadata and organization efficiently.
-* **Minimalist UI:** A responsive vanilla frontend designed for ease of use without heavy frameworks.
+* **Security:**: Middlewares to make sure no untrusted devices can access the website, and login Authentication.
+* **UI:**: Simple and easy to use user interface, a Gallery-like page to display the user Images.
+* **Files Management:** The abilty to Upload/Delete/Retrieve all kind of files, every user has his own Directory.
+* **Secure Remote Access:**: Avaliable through Tailscale(serve) service, a Mesh peer-to-peer network.
 
 ---
 
@@ -60,7 +57,7 @@
 
 1. **Clone the repository**
    ```bash
-   git clone [https://github.com/m7md2323/Personal-Storage-Server.git](https://github.com/m7md2323/Personal-Storage-Server.git)
+   git clone https://github.com/m7md2323/Personal-Storage-Server.git
    cd Personal-Storage-Server
    ```
 
@@ -71,11 +68,10 @@
 
 3. **Configure Environment**
 
-# Database Configuration (SQLite)
+* Database Configuration (SQLite)
 DATABASE_FILE_PATH="YOUR_DATABASE_FILE_PATH"
 
-# Storage Configuration
-# The local path on your machine where files will be stored
+* Storage Configuration
 UPLOADS="YOUR_FILES_UPLOAD_PATH"
 
 
@@ -89,8 +85,7 @@ UPLOADS="YOUR_FILES_UPLOAD_PATH"
 ## 📸 Screenshots
 
 | Dashboard View|
-| :--- | :--- |
-| ![Dashboard](https://m7md2323.github.io/Portfolio/images/upload.PNG)|
+![Dashboard](https://m7md2323.github.io/Portfolio/images/upload.PNG)
 
 ---
 
