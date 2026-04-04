@@ -1,4 +1,4 @@
-# 🌐 Personal Storage Server
+# Personal Storage Server
 
 > A lightweight self-hosted Website to store files on a local machine, and safely be able to download, delete, upload the files across the internet.
 
@@ -7,8 +7,9 @@
 ---
 ## 📖 Table of Contents
 
-* [Features](#-features)
 * [Tech Stack](#-tech-stack)
+* [Features](#-features)
+* [Project Structure](#-project-structure)
 * [Getting Started](#-getting-started)
 * [Screenshots](#-screenshots)
 * [Contributing](#-contributing)
@@ -43,6 +44,26 @@
 * **UI:**: Simple and easy to use user interface, a Gallery-like page to display the user Images.
 * **Files Management:** The abilty to Upload/Delete/Retrieve all kind of files, every user has his own Directory.
 * **Secure Remote Access:**: Avaliable through Tailscale(serve) service, a Mesh peer-to-peer network.
+
+---
+
+## 📂 Project Structure
+
+.
+├── backend/
+│   ├── database/         # SQLite connection & GORM initialization
+│   ├── handlers/         # Gin route handlers (Upload, Download, Delete)
+│   ├── middlewares/      # Auth & device trust logic
+│   └── models/           # Data structures & schemas
+├── frontend/             # Web interface
+│   ├── css/              # Styling
+│   ├── js/               # Client-side logic
+│   └── index.html        # Main dashboard
+├── main.go               # Application entry point
+├── go.mod                # Go dependencies
+├── go.sum                # Cryptographic checksums
+├── .gitignore            # Excludes sensitive data & binaries
+└── README.md             # Project documentation
 
 ---
 
@@ -101,10 +122,10 @@ UPLOADS="YOUR_FILES_UPLOAD_PATH"
 
 ## ⚖️ License
 
-Distributed under the **MIT License**. See `LICENSE` for more information.
+Distributed under the no License.
 
 ---
 
 ## 📬 Contact
 
-**Mohammad K. Al Harahsheh** - [GitHub Profile](https://github.com/m7md2323) | [Email] (mohammadalharahsheh04@gmail.com)
+**Mohammad K. Al Harahsheh** - [GitHub Profile](https://github.com/m7md2323) | **Email** [Send Email](mohammadalharahsheh04@gmail.com)
