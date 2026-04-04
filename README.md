@@ -1,11 +1,11 @@
 # 🌐 Personal Storage Server
 
-> A lightweight Website to store files on a local machine, and safely be able to download, delete, upload the files across the internet.
+> A lightweight self-hosted Website to store files on a local machine, and safely be able to download, delete, upload the files across the internet.
 
 [**Project Portfolio**](https://m7md2323.github.io/Portfolio/pages/personal_cloud_sotrage.html) | [**Report Bug**](https://github.com/m7md2323/Personal-Storage-Server/issues)
 
 ---
-
+## Note: This website is desgined to run on a linux machine
 ## 📖 Table of Contents
 
 * [Features](#-features)
@@ -20,11 +20,14 @@
 
 ## 🛠️ Tech Stack
 
-### Backend & Database
+### Backend, OS & Database
 ![Go](https://img.shields.io/badge/go-%2300ADD8.svg?style=for-the-badge&logo=go&logoColor=white)
 ![Gin](https://img.shields.io/badge/Gin-05122A?style=for-the-badge&logo=go)
 ![SQLite](https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white)
 ![GORM](https://img.shields.io/badge/GORM-blueviolet?style=for-the-badge)
+![Debian](https://img.shields.io/badge/Debian-A81D33?style=for-the-badge&logo=debian&logoColor=white)
+
+> **Note:** This system is designed for hosted locally on a **Linux (Debian 13)** laptop to serve as a private cloud.
 
 ### Frontend
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
@@ -67,20 +70,27 @@
    ```
 
 3. **Configure Environment**
-   Ensure your storage directory is set up or defined in the configuration.
+
+# Database Configuration (SQLite)
+DATABASE_FILE_PATH="YOUR_DATABASE_FILE_PATH"
+
+# Storage Configuration
+# The local path on your machine where files will be stored
+UPLOADS="YOUR_FILES_UPLOAD_PATH"
+
 
 4. **Run the server**
    ```bash
    go run main.go
    ```
-
+   
 ---
 
 ## 📸 Screenshots
 
-| Dashboard View | File Management |
+| Dashboard View|
 | :--- | :--- |
-| ![Dashboard](https://via.placeholder.com/400x250?text=Storage+Dashboard) | ![Files](https://via.placeholder.com/400x250?text=File+List+View) |
+| ![Dashboard](https://m7md2323.github.io/Portfolio/images/upload.PNG)|
 
 ---
 
@@ -102,6 +112,4 @@ Distributed under the **MIT License**. See `LICENSE` for more information.
 
 ## 📬 Contact
 
-**Mohammad K. Al Harahsheh** - [GitHub Profile](https://github.com/m7md2323)
-
-Project Link: [https://github.com/m7md2323/Personal-Storage-Server](https://github.com/m7md2323/Personal-Storage-Server)
+**Mohammad K. Al Harahsheh** - [GitHub Profile](https://github.com/m7md2323) | [Email] (mohammadalharahsheh04@gmail.com)
