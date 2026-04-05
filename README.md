@@ -122,10 +122,10 @@ UPLOADS="YOUR_FILES_UPLOAD_PATH"
 
 ## ⚖️ License
 
-Distributed under the no License.
+Distributed under no License.
 
 ---
 
 ## 📬 Contact
 
-**Mohammad K. Al Harahsheh** - [GitHub Profile](https://github.com/m7md2323) | **Email** [Send Email](mohammadalharahsheh04@gmail.com)
+**Mohammad K. Al Harahsheh** - [GitHub Profile](https://github.com/m7md2323) | **Email** : mohammadalharahsheh04@gmail.com
